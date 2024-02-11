@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE employees SYSTEM "employees.dtd">
+<employees>
+    <employee>
+        <id>1</id>
+        <name>John Doe</name>
+        <position>Manager</position>
+        <department>HR</department>
+        <salary>60000</salary>
+    </employee>
+    <employee>
+        <id>2</id>
+        <name>Jane Smith</name>
+        <position>Software Engineer</position>
+        <department>Engineering</department>
+        <salary>75000</salary>
+    </employee>
+    <!-- Add more employee records as needed -->
+</employees>
