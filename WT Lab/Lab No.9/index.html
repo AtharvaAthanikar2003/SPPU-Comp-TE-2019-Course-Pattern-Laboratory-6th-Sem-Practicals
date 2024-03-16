@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html ng-app="registrationApp">
+<head>
+    <title>Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form name="registrationForm" ng-controller="RegistrationController" ng-submit="validateForm()" novalidate>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="full name" ng-model="user.Name" placeholder="Enter your name"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" ng-model="user.email" placeholder="Enter your email"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" ng-model="user.dob" placeholder="Enter your DOB" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" ng-model="user.password"
+                    placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="repassword">Re-Enter Password:</label>
+                <input type="password" id="repassword" name="repassword" ng-model="user.repassword"
+                    placeholder="Re-Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Contact:</label>
+                <input type="text" id="mobile" name="mobile" ng-model="user.mobile"
+                    placeholder="Enter your Mobile Number" required maxlength="10" minlength="10">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" ng-model="user.gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+            <div class="success-message" ng-show="formSuccess">{{ successMessage }}</div>
+            <div class="error-message" ng-show="formError">{{ errorMessage }}</div>
+        </form>
+    </div>
+    <script>
+        angular.module('registrationApp', [])
+            .controller('RegistrationController', function ($scope) {
+                $scope.user = {};
+                $scope.validateForm = function () {
+                    var password = $scope.user.password;
+                    var repassword = $scope.user.repassword;
+                    var email = $scope.user.email;
+                    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    var passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$/;
+                    $scope.formError = false; 
+                    $scope.errorMessage = ""; 
+                    if (!emailRegex.test(email)) {
+                        $scope.formError = true;
+                        $scope.errorMessage = "Please enter a valid email address.";
+                        return false;
+                    }
+                    if (password !== repassword) {
+                        $scope.formError = true;
+                        $scope.errorMessage = "Passwords do not match. Please re-enter.";
+                        return false;
+                    }
+                    if (!passwordRegex.test(password)) {
+                        $scope.formError = true;
+                        $scope.errorMessage = "Password must be at least 8 characters long and include at least one number, one alphabet, and one special symbol.";
+                        return false;
+                    }
+                    alert("Form submitted");
+                };
+            });
+    </script>
+</body>
+</html>
