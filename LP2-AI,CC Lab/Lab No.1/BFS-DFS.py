@@ -1,5 +1,4 @@
 import random
-
 def bfs(graph, start, visited=None):
     if visited is None:
         visited = set()
@@ -13,7 +12,6 @@ def bfs(graph, start, visited=None):
             queue.append(neighbor)
             visited.add(neighbor)
     return visited
-
 def dfs(graph, start, visited=None):
     if visited is None:
         visited = set()
@@ -22,7 +20,6 @@ def dfs(graph, start, visited=None):
     for next_node in graph[start] - visited:
         dfs(graph, next_node, visited)
     return visited
-
 def create_graph():
     graph = {}
     num_nodes = int(input("Enter the number of nodes: "))
@@ -35,7 +32,6 @@ def create_graph():
         graph[node1].add(node2)
         graph[node2].add(node1)
     return graph
-
 def main():
     graph = create_graph()
     while True:
@@ -61,6 +57,5 @@ def main():
             break
         else:
             print("Invalid choice. Please enter a valid option.")
-
 if __name__ == "__main__":
     main()
