@@ -6,9 +6,6 @@ def selection_sort(arr):
             if arr[j] < arr[min_index]:
                 min_index = j
         arr[i], arr[min_index] = arr[min_index], arr[i]
-
-# Enter as many numbers as we want in the array and it will sort the numbers given below
-             
 arr = list(map(int, input("Enter space-separated numbers: ").split()))
 selection_sort(arr)
 print("Sorted array is:", arr)
