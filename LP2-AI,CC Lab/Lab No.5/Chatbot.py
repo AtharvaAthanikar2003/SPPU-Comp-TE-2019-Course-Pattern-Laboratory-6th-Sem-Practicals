@@ -1,5 +1,5 @@
+#AI 5th Lab
 import time
-
 class Chatbot:
     def __init__(self):
         self.user_name = None
@@ -40,7 +40,6 @@ class Chatbot:
             print("🤖 Great! Make sure to stay hydrated and take breaks.")
         else:
             print("🤖 Take a break and have a nutritious meal. Your health is important!")
-
 def main():
     chatbot = Chatbot()
     chatbot.greet()
